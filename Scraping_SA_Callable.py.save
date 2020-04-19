@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+# coding: utf
+
+
+import Scraping_SA_Func as e
+
+
+e.Daily_Func()
+
