@@ -1,4 +1,4 @@
-#!/usr/bin/ python3
+#!/usr/bin/python3
 # coding: utf-8
 
 
@@ -31,7 +31,7 @@ def Get_SA_Data(pd_df):
     
     for i in range(0, len(soup_values)):
         data_values[i+1] = int(soup_values[i][80:(len(soup_values[i])-10)])
-        
+    
     to_append = pd.Series(data_values, pd_df.columns)
     pd_df = pd_df.append([to_append], ignore_index = True)
     
@@ -41,6 +41,7 @@ def Get_SA_Data(pd_df):
 
 def Save_SA_Data(pd_df):
     
+    print("Saving data to df_Cases_SA")
     pd_df.to_pickle('df_Cases_SA')
 
 
@@ -48,9 +49,10 @@ def Save_SA_Data(pd_df):
 def Daily_Func():
     if os.path.exists('df_Cases_SA'):
         df_SA = Get_SA_Data(pd.read_pickle('df_Cases_SA'))
-    
+        
         Save_SA_Data(df_SA)
     else:
+        print("Dataframe not found. \nCreating a new Dataframe.")
         Initiate_SA_DF()
         Daily_Func()
     
